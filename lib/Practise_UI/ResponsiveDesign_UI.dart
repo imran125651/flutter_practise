@@ -20,7 +20,7 @@ class _ResponsiveDesignUIState extends State<ResponsiveDesignUI> {
   Widget build(BuildContext context) {
     print(MediaQuery.of(context).size.aspectRatio);
     print(MediaQuery.of(context).size.flipped);
-    print(MediaQuery.of(context).devicePixelRatio);
+    print(MediaQuery.of(context).orientation);
 
     Size size = MediaQuery.of(context).size;
     if(size.width < 640){
@@ -46,12 +46,42 @@ class _ResponsiveDesignUIState extends State<ResponsiveDesignUI> {
                   if(constraints.maxWidth < 640){
                     return Column(
                       children: [
-                        Text("This is a Phone"),
+                        Container(
+                          height: MediaQuery.of(context).size.width,
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.green,
+                          child: FractionallySizedBox(
+                            widthFactor: 0.5,
+                            heightFactor: 0.5,
+                            alignment: Alignment.center,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(100)
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     );
                   }
                   else if(constraints.maxWidth >= 640 && constraints.maxWidth < 1007){
-                    return Text("This is a Tablet");
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height - 150,
+                      color: Colors.green,
+                      child: FractionallySizedBox(
+                        widthFactor: 0.2,
+                        heightFactor: 0.6,
+                        alignment: Alignment.center,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(150),
+                          ),
+                        ),
+                      ),
+                    );
                   }
                   else{
                     return Text("This is a Laptop/Destop");
