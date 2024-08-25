@@ -1,19 +1,11 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_practise/Practise_UI/ResponsiveDesign_UI.dart';
+import 'Practise_UI/AspectRatioUI.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-
-  ]);
-  runApp(DevicePreview(
-    enabled: false,
-    //enabled: !kDebugMode,
-    builder: (context) => MyApp(), // Wrap your app
-  ));
+  SystemChrome.setPreferredOrientations([]);
+  runApp(const  MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,17 +14,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).orientation);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.yellow
+        ),
         useMaterial3: true,
       ),
-      home: const ResponsiveDesignUI(),
+      //home: const Flexible_Expanded_UI(),
+      home: const AspectRatioUI(),
     );
   }
 }
